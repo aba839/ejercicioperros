@@ -2,7 +2,15 @@
 
 $url = "https://dog.ceo/api/breeds/list/all";
 $response = json_decode(file_get_contents($url), true);
-
+//datos de la BD
+$hostname = "localhost:3306";
+$user = "root";
+$password = "";
+$db = "perros";
+//Abrimos la conexión
+$connection = mysqli_connect($hostname , $user , $password);
+//elegimos BD
+mysqli_select_db ($connection, $db);
 
 foreach ($response['message'] as $raza => $subrazas) {
     if (count($subrazas) > 0) {
