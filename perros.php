@@ -19,7 +19,7 @@ foreach ($response['message'] as $raza => $subrazas) {
             $urlimagen = "https://dog.ceo/api/breed/" . $raza . "/" . $subraza . "/images/random";
             echo $nombreraza . " su URL es " . $urlimagen;
             echo "<br>";
-            mysqli_query($connection, "INSERT INTO raza (nombre) values ('$nombreraza','$urlimagen');");
+            mysqli_query($connection, "INSERT INTO raza (nombre,web) values ('$nombreraza','$urlimagen');");
         }
     } else {
         $urlimagen = "https://dog.ceo/api/breed/" . $raza . "/images/random";
