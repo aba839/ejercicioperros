@@ -18,13 +18,13 @@ foreach ($response['message'] as $raza => $subrazas) {
             $nombreraza = $subraza . ' ' . $raza;
             $urlimagen = "https://dog.ceo/api/breed/" . $raza . "/" . $subraza . "/images/random";
            // echo $nombreraza . " su URL es " . $urlimagen;
-            echo "<br>";
+           // echo "<br>";
           //  mysqli_query($connection, "INSERT INTO raza (raza,web) values ('$nombreraza','$urlimagen');");
         }
     } else {
         $urlimagen = "https://dog.ceo/api/breed/" . $raza . "/images/random";
        // echo $raza . " su URL es " . $urlimagen;
-        echo "<br>";
+       // echo "<br>";
        // mysqli_query($connection, "INSERT INTO raza (raza,web) values ('$raza','$urlimagen');");
     }
 }
@@ -36,9 +36,11 @@ $perrosExtraidos=mysqli_fetch_all($perros, $result_type); //saco los datos en fo
 //var_dump($perrosExtraidos);
 //echo "raza: ".$perrosExtraidos[0]["raza"];
 for($i=0;$i<count($perrosExtraidos);$i++){
-    echo "<img src='".$perrosExtraidos[$i]["web"]."'>";
-    echo $perrosExtraidos[$i]["raza"];  
-    
+    $url = $perrosExtraidos[$i]["web"]; //guardo la url de la api de cada raza
+    $fotoRaza = json_decode(file_get_contents($url), true); //saco la dirección de foto de la raza
+    //var_dump($fotoRaza['message']);
+    echo "<img  WIDTH=90 HEIGHT=90 src='".$fotoRaza['message']."'>";
+    echo $perrosExtraidos[$i]["raza"];      
     echo "<br>";
 }
 mysqli_close($connection);
